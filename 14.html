@@ -1,3 +1,4 @@
+<!-- js中添加节点 or 获取节点设置innerHTML(字符串中添加标签) -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,18 +30,30 @@
 	遍历读取aqiData中各个城市的数据
 	将空气质量指数大于60的城市显示到aqi-list的列表中
 	*/
-	var aqi_list = aqiData.filter(function(item,index,aqiData){
-		if(item[1]>60){
-			return item;
-		}
+
+	/*筛选出>60的*/
+	var arr = aqiData.filter(function(arr){
+		return arr[1]>60;
+	});
+	/*从大到小排序*/
+	var arrSort = arr.sort(function(item1,item2){
+		return item2[1]-item1[1];
+	});
+	/**/
+	// var chNum = ['一','二','三','四','五'];
+	/*对每一项遍历,输出*/
+	var content = "";
+	arrSort.forEach(function(element,index){
+		content += "<li>第" + (index+1) + "名: " + element.toString() + "</li>";
+
+		// var node = document.createElement("li");
+		// var textNode = document.createTextNode(element.toString());
+		// node.appendChild(textNode);
+		// document.getElementById('aqi-list').appendChild(node);
 	});
 
-	for (var i = aqi_list.length - 1; i >= 0; i--) {
-		var node = document.createElement("li");
-		var textNode = document.createTextNode(aqi_list[i].toString());
-		node.appendChild(textNode);
-		document.getElementById('aqi-list').appendChild(node);
-	}
+	document.getElementById('aqi-list').innerHTML = content;
+	
 })();
 
 </script>
