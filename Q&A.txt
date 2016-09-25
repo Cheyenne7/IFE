@@ -1,2 +1,3 @@
 1.dl ul
 2.数组的push和[]有什么区别
+3.for...in得到的索引是string类型,所以尽量不用for in循环

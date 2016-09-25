@@ -37,14 +37,14 @@
  */
  function getData() {
 	var data = [];
-	var lis = document.getElementsByTagName("li");
-
-	for(var i in lis){
+	var lis = document.getElementById('source').getElementsByTagName("li");
+	
+	for(var i=0;i<lis.length;i++){
 		var loc = lis[i].innerHTML.slice(0,2);
 		var score = lis[i].innerHTML.slice(10,12);
 		data[i] = [loc,score];
 		// data.push([loc,score]);
-		alert(data.length);
+		// alert(data.length);
 	}
 
 	return data;
@@ -58,7 +58,7 @@
  */
  function sortAqiData(data) {
  	data.sort(function(item1,item2){
- 		return item1[1]-item2[1];
+ 		return item2[1]-item1[1];
  	});
  	return data;
  }
@@ -70,11 +70,11 @@
  */
  function render(data) {
 	var content="";
-	for(var i in data){
+	for(var i=0;i<data.length;i++){
 		content += "<li>第" + (i+1) +"名:"+data[i][0]+"空气质量：<b>" + data[i][1] +"</b></li>";
 	}
 	var ul = document.getElementById("resort");
-	ul.innerHTML = content;
+	ul.innerHTML += content;
 
 
 }
